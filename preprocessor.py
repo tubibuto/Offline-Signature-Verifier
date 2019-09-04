@@ -45,10 +45,11 @@ def gray2bin (gray, eps = 0.01):
     thr = threshold(gray, eps)
     return np.where(gray >= thr, 1, 0)
 
-img = mpimg.imread('D:/Diplomski/Dataset/dataset1/real/00404004 - Copy.png')     
-gray = remove_noise(invert(rgb2gray(img)))
-gray = smooth(remove_noise(invert(rgb2gray(img))))
-binim = gray2bin(gray)
-plt.imshow(gray, cmap=plt.get_cmap('gray'), vmin=0, vmax=1)
-plt.imshow(binim, cmap=plt.get_cmap('gray'), vmin=0, vmax=1)
-plt.show()
+def main ():
+    img = mpimg.imread('D:/Diplomski/Dataset/dataset1/real/00404004.png')     
+    gray = remove_noise(invert(rgb2gray(img)))
+    gray = smooth(remove_noise(invert(rgb2gray(img))))
+    binim = gray2bin(gray)
+    plt.imshow(gray, cmap=plt.get_cmap('gray'), vmin=0, vmax=1)
+    plt.imshow(binim, cmap=plt.get_cmap('gray'), vmin=0, vmax=1)
+    plt.show()
