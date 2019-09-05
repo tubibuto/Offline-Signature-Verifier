@@ -3,6 +3,9 @@ import matplotlib.pyplot as plt
 import matplotlib.image as mpimg
 
 def rgb2gray (rgb):
+    # check if it is already greyscale
+    if rgb.ndim < 3:
+        return rgb
     return np.dot(rgb[..., :3], [0.2989, 0.5870, 0.1140])
 
 def invert (gray):
@@ -45,11 +48,7 @@ def gray2bin (gray, eps = 0.01):
     thr = threshold(gray, eps)
     return np.where(gray >= thr, 1, 0)
 
-def main ():
-    img = mpimg.imread('D:/Diplomski/Dataset/dataset1/real/00404004.png')     
-    gray = remove_noise(invert(rgb2gray(img)))
+def preprocess (img):
     gray = smooth(remove_noise(invert(rgb2gray(img))))
     binim = gray2bin(gray)
-    plt.imshow(gray, cmap=plt.get_cmap('gray'), vmin=0, vmax=1)
-    plt.imshow(binim, cmap=plt.get_cmap('gray'), vmin=0, vmax=1)
-    plt.show()
+    return binim

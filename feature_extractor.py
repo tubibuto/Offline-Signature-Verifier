@@ -1,4 +1,4 @@
-import preprocessor as pre
+import numpy as np
 import scipy.ndimage.interpolation as ip
 
 def ro (binim, angle):
@@ -91,6 +91,13 @@ def cross_points_no (binim):
             res += int(count >= 3)
     return res
 
-img = mpimg.imread('D:/Diplomski/Dataset/dataset1/real/00404004.png')     
-gray = pre.smooth(pre.remove_noise(pre.invert(pre.rgb2gray(img))))
-binim = pre.gray2bin(gray)
+def extract (binim):
+    res = {}
+    res["baseline_slant"] = baseline_slant_angle(binim)
+    res["aspect_ratio"] = aspect_ratio(binim)
+    res["normalized_area"] = normalized_area(binim)
+    res["center_x"], res["center_y"] = center_of_gravity(binim)
+    res["center_slope"] = centers_of_gravity_slope(binim)
+    res["edge_points"] = edge_points_no(binim)
+    res["cross_points"] = cross_points_no(binim)
+    return res
