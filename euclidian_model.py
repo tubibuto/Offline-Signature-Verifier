@@ -3,6 +3,7 @@ import feature_extractor as fe
 import os
 
 class euclid_model:
+    # takes dataset path and calculates all model's stats based on images from it
     def __init__ (self, path):
         # determine number of distinct signatures
         self.n = 0

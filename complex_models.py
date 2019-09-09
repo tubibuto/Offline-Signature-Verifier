@@ -34,7 +34,6 @@ def fetch_data (path, label, augment):
             binim = pre.preprocess(image)
             X.append(binim.ravel())
             Y.append(label)
-        #Y.append(src if src == wrt else 0)
     
     return X, Y
         
